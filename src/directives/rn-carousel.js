@@ -64,9 +64,9 @@
                     display: 'inline-block'
                 },
                 opacity,
-                absoluteLeft = (slideIndex * 100) + offset,
+                absoluteLeft = (slideIndex * 50) + offset,
                 slideTransformValue = DeviceCapabilities.has3d ? 'translate3d(' + absoluteLeft + '%, 0, 0)' : 'translate3d(' + absoluteLeft + '%, 0)',
-                distance = ((100 - Math.abs(absoluteLeft)) / 100);
+                distance = ((50 - Math.abs(absoluteLeft)) / 50);
 
             if (!DeviceCapabilities.transformProperty) {
                 // fallback to default slide if transformProperty is not available
@@ -248,7 +248,7 @@
                         function updateSlidesPosition(offset) {
                             // manually apply transformation to carousel childrens
                             // todo : optim : apply only to visible items
-                            var x = scope.carouselBufferIndex * 100 + offset;
+                            var x = scope.carouselBufferIndex * 50 + offset;
                             angular.forEach(getSlidesDOM(), function(child, index) {
                                 child.style.cssText = createStyleString(computeCarouselSlideStyle(index, x, options.transitionType));
                             });
@@ -282,7 +282,7 @@
                             slideOptions = slideOptions || {};
                             if (slideOptions.animate === false || options.transitionType === 'none') {
                                 locked = false;
-                                offset = index * -100;
+                                offset = index * -50;
                                 scope.carouselIndex = index;
                                 updateBufferIndex();
                                 return;
@@ -295,7 +295,7 @@
                                     'x': offset
                                 },
                                 to: {
-                                    'x': index * -100
+                                    'x': index * -50
                                 },
                                 duration: options.transitionDuration,
                                 easing: options.transitionEasing,
@@ -306,7 +306,7 @@
                                     locked = false;
                                     scope.$apply(function() {
                                         scope.carouselIndex = index;
-                                        offset = index * -100;
+                                        offset = index * -50;
                                         updateBufferIndex();
                                     });
                                 }
